@@ -3,14 +3,14 @@ package tests;
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
 
 import java.io.File;
 
 import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
-
-public class PracticeFormTest {
+   
+public class PracticeFormWithoutPageObjectTest {
   @BeforeAll
   static void beforeAll() {
     Configuration.baseUrl = "https://demoqa.com";
@@ -19,7 +19,7 @@ public class PracticeFormTest {
 
 
   @Test
-  void successFillTest() throws InterruptedException {
+  void successFillTest() {
     open("/automation-practice-form");
     $(".main-header").shouldHave(text("Practice Form"));
 
@@ -27,23 +27,21 @@ public class PracticeFormTest {
     $("#lastName").setValue("Isaev");
     $("#userEmail").setValue("ivan@jirafiki.eu");
 
-    executeJavaScript("arguments[0].click()", $(By.id("gender-radio-1")));
+    $("#genterWrapper").$(byText("Male")).click();
 
     $("#userNumber").setValue("1234567890");
-    //$("#dateOfBirthInput").clear();
 
     $("#dateOfBirthInput").click();
     $(".react-datepicker__month-select").selectOptionByValue("1");
     $(".react-datepicker__year-select").selectOptionByValue("1990");
     $(".react-datepicker__day--007").click();
 
-
     $("#subjectsInput").setValue("Arts").pressEnter();
     $("#subjectsInput").setValue("Civics").pressEnter();
 
+    $("#hobbiesWrapper").$(byText("Reading")).click();
+    $("#hobbiesWrapper").$(byText("Music")).click();
 
-    executeJavaScript("arguments[0].click()", $(By.id("hobbies-checkbox-2")));
-    executeJavaScript("arguments[0].click()", $(By.id("hobbies-checkbox-3")));
     $("#uploadPicture").uploadFile(new File("src/test/resources/picture.jpg"));
 
     $("#currentAddress").setValue("Novosibirsk");
