@@ -59,9 +59,8 @@ public class PracticeFormWithPageObjectTest {
             .checkForm("Hobbies", musicHobby + ", " + readingHobby)
             .checkForm("Picture", picturePath)
             .checkForm("Address", currentAddress)
-            .checkForm("State and City", state + " " + city);
-
-    registrationPage.clickCloseButton();
+            .checkForm("State and City", state + " " + city)
+            .checkExistsCloseButton();
 
   }
 }

@@ -5,6 +5,7 @@ import pages.componets.CalendarComponent;
 
 import java.util.stream.Stream;
 
+import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
@@ -110,8 +111,8 @@ public class RegistrationPage {
     submitButton.click();
   }
 
-  public void clickCloseButton() {
-    closeButton.click();
+  public void checkExistsCloseButton() {
+    closeButton.shouldHave(exist);
   }
 
   public RegistrationPage checkForm(String fieldName, String value) {
